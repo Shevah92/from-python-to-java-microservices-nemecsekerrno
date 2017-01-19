@@ -11,6 +11,7 @@ import static spark.debug.DebugScreen.enableDebugScreen;
 
 /**
  * Created by berloc on 2017.01.10..
+ * The responsibility of this file is to run the server
  */
 public class ShippingCostCalculatorService {
 

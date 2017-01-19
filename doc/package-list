@@ -1,0 +1,4 @@
+com.codecool.shipping_cost_calculator_service.controller
+com.codecool.shipping_cost_calculator_service.model
+com.codecool.shipping_cost_calculator_service.server
+com.codecool.shipping_cost_calculator_service.service

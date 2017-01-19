@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.Currency;
 import java.util.List;
 
+/**
+ * Responsible for creating the shippingOptions
+ */
 public class ShippingOption {
     public static final List<String> TYPES = Arrays.asList("truck", "truckViaHighway", "expressCourier",
             "timeMachine");
@@ -26,6 +29,14 @@ public class ShippingOption {
     private final int TimeMachineCost = 6000000;
 //    -------------------------------
 
+    /**
+     * The constructor creates the different ShippingOption object based on the input type
+     * @param type The type of the transport used
+     * @param originFound Location of the store/warehouse, from where the product is delivered
+     * @param destinationFound Location of the buyer where the product is delivered
+     * @param distanceInKm Distance beetween the two location
+     * @param timeInHours The time it takes to deliver the product
+     */
 
     public ShippingOption(String type, String originFound, String destinationFound, float distanceInKm, float timeInHours) {
         this.originFound = originFound;

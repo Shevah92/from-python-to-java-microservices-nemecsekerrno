@@ -12,6 +12,7 @@ import java.util.HashMap;
 
 /**
  * Created by shevah on 10/01/17.
+ * Responsible for what's happening when the server gets a request and sends a response
  */
 public class ShippingCostCalculatorController {
 
@@ -21,10 +22,27 @@ public class ShippingCostCalculatorController {
         this.apiService = apiService;
     }
 
+    /**
+     * Checks if the server is running
+     * @param request
+     * @param response
+     * @return
+     */
     public String status(Request request, Response response) {
         return "ok";
     }
 
+
+    /**
+     * Creates the response JSON with the shipping options that is sent back to the user
+     * <p>Get's the two destination parameters out of the request, and uses the GoogleDistanceMatrixAPI
+     * to get the data needed to generate the shipping options</p>
+     * @param request
+     * @param response
+     * @return JSONObject containing the different shipping options
+     * @throws IOException
+     * @throws URISyntaxException
+     */
     public JSONObject generateOptions(Request request, Response response) throws IOException, URISyntaxException {
         String originAddress = request.queryParams("origin");
         String destinationAddress = request.queryParams("destination");
@@ -49,6 +67,14 @@ public class ShippingCostCalculatorController {
         return allOptionsJSON;
     }
 
+    /**
+     * Responsible for handling the different status messages sent back by the GoogleDistanceMatrixAPI
+     * <p>Handles the sent back status messages
+     * If the status is "OK" get the information out of the GoogleDistanceMatrixAPI response</p>
+     * @param res
+     * @param rawData
+     * @return JSONObject, containing information about what went wrong, if the status is okay returns the data needed to calculate shipping options
+     */
     public JSONObject extractData(Response res, String rawData) {
         JSONObject rawDataJSON = new JSONObject(rawData);
         String status = rawDataJSON.getString("status");
